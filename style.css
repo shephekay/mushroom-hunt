@@ -1,0 +1,16 @@
+:root {
+    --mainColor: cornflowerblue;
+    --titleFont: sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* outline: 3px solid gold; */
+}
+h1, h2, h3, h4, h5, h6 {
+    font: var(--titleFont);
+}
+body {
+    color: var(--mainColor);
+}
