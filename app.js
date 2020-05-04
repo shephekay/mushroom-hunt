@@ -93,40 +93,40 @@ const createRound = () => {
 
 
 
-const $playTurn = $('.square').on('click', (event, currentPlayer) => {
-    console.log(event.currentTarget);
-    const $element = $(event.currentTarget);
-    console.log($element)
-    $element.toggleClass('unclicked');
-    if ($element.attr('id', 'mushroom')) {
-        currentPlayer.addMushroom()
-    } else if ($element.attr('id', 'poison')) {
-        currentPlayer.poisoned()
-    }
-    return $element
+// const $playTurn = $('.square').on('click', (event, currentPlayer) => {
+//     console.log(event.currentTarget);
+//     const $element = $(event.currentTarget);
+//     console.log($element)
+//     $element.toggleClass('unclicked');
+//     if ($element.attr('id', 'mushroom')) {
+//         currentPlayer.addMushroom()
+//     } else if ($element.attr('id', 'poison')) {
+//         currentPlayer.poisoned()
+//     }
+//     return $element
 
-    // $element.removeAttr('id')
-})
+//     // $element.removeAttr('id')
+// })
 
 //play round. should be loop?
-const $play = (currentPlayer) => {
-    $('.square').on('click', (event, currentPlayer) => {
+const $playTurn = (currentPlayer) => {
+    $('.square').on('click', (event) => {
         console.log(event.currentTarget);
         const $element = $(event.currentTarget);
-        console.log($element)
+        console.log($element);
         $element.toggleClass('unclicked');
-        if ($element.attr('id', 'mushroom')) {
+        // return $element
+        if ($element.is('#mushroom')) {
             currentPlayer.addMushroom()
-        } else if ($element.attr('id', 'poison')) {
+        } else if ($element.is('#poison')) {
             currentPlayer.poisoned()
-        }
-        return $element
-    
+        } console.log(currentPlayer.mushrooms)
         // $element.removeAttr('id')
     })
-
-
     
+        
+    
+        // $element.removeAttr('id')
 
     //when player clicks on square, reveal whether currentTarget has class of mushroom. 
 
@@ -164,4 +164,12 @@ const handler = {
 
 newGame()
 // console.log(player1, player2)
-$play(player1)
+$playTurn(player1)
+$playTurn(player2)
+
+
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+
+// https://api.jquery.com/removeAttr/
+
+// https://stackoverflow.com/questions/17277821/jquery-if-element-has-an-id/17277848
