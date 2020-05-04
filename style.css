@@ -6,11 +6,67 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* outline: 3px solid gold; */
+    outline: 3px solid gold;
 }
 h1, h2, h3, h4, h5, h6 {
     font: var(--titleFont);
 }
 body {
     color: var(--mainColor);
+}
+h1 {
+    text-align: center;
+    font-size: 3rem;
+}
+.wrapper {
+    display: flex;
+}
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 27vw;
+    height: 90vh;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+}
+button {
+    /* height: 2rem; */
+    width: fit-content;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(193, 235, 193);
+    margin: 30px;
+    cursor: pointer;
+}
+aside {
+    margin: 30px;
+}
+.game-square {
+    height: 90vh;
+    width: 70vw;
+    position: relative;
+}
+.container-grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    position: absolute;
+    /* top: 40%; */
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: rgb(193, 235, 193);
+}
+.square {
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    border: solid 3px green;
+}
+.unclicked {
+    background-color: midnightblue;
 }
