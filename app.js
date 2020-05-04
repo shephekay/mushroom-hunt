@@ -22,6 +22,23 @@ class Player {
         this.name = name
         this.mushrooms = []
     }
+    playTurn(){
+        $('.square').on('click', (event) => {
+            console.log(event.currentTarget);
+            const $element = $(event.currentTarget);
+            console.log($element);
+            $element.toggleClass('unclicked');
+            // return $element
+            if ($element.is('#mushroom')) {
+                this.addMushroom()
+            } else if ($element.is('#poison')) {
+                this.poisoned()
+            } console.log(this, this.mushrooms)
+            console.log(player2)
+            // $element.unbind('click')
+            // $element.removeAttr('id')
+            
+        })}
     addMushroom (){
         this.mushrooms.push('mush')
     }
@@ -29,7 +46,6 @@ class Player {
         this.mushrooms = []
     }
     win () {
-
     }
 }
 const player1 = new Player('Player 1');
@@ -109,36 +125,33 @@ const createRound = () => {
 // })
 
 //play round. should be loop?
-const $playTurn = (currentPlayer) => {
-    $('.square').on('click', (event) => {
-        console.log(event.currentTarget);
-        const $element = $(event.currentTarget);
-        console.log($element);
-        $element.toggleClass('unclicked');
-        // return $element
-        if ($element.is('#mushroom')) {
-            currentPlayer.addMushroom()
-        } else if ($element.is('#poison')) {
-            currentPlayer.poisoned()
-        } console.log(currentPlayer.mushrooms)
-        // $element.removeAttr('id')
-    })
-    
-        
-    
-        // $element.removeAttr('id')
+// const $playTurn = (currentPlayer) => {
+//     $('.square').on('click', (event) => {
+//         console.log(event.currentTarget);
+//         const $element = $(event.currentTarget);
+//         console.log($element);
+//         $element.toggleClass('unclicked');
+//         // return $element
+//         if ($element.is('#mushroom')) {
+//             currentPlayer.addMushroom()
+//         } else if ($element.is('#poison')) {
+//             currentPlayer.poisoned()
+//         } console.log(currentPlayer, currentPlayer.mushrooms)
+//         // $element.removeAttr('id')
+//     })
 
-    //when player clicks on square, reveal whether currentTarget has class of mushroom. 
+//     // when player clicks on square, reveal whether currentTarget has class of mushroom. 
 
-    //if it does
+//     // if it does
 
-}
-
+// }
 
 //check win. if either player has 30 mushrooms, they win. check after each play.
 const checkWin = (currentPlayer) => {
     if (currentPlayer.mushrooms.length >= 30) {
         currentPlayer.win()
+    } else {
+
     }
 }
 
@@ -164,8 +177,12 @@ const handler = {
 
 newGame()
 // console.log(player1, player2)
-$playTurn(player1)
-$playTurn(player2)
+player1.playTurn()
+// player2.playTurn()
+// $playTurn()
+// console.log(player1,player2)
+
+player2.playTurn()
 
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
