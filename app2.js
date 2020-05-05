@@ -4,15 +4,11 @@
 
 let $nameInput = $('input').val()
  
-const gameBoardValues = ['poison'];
+let gameBoardValues = []
 
-for (x = 0; x < 13; x++){
-    gameBoardValues.push('mushroom')
-}
-for (x = 0; x < 21; x++){
-    gameBoardValues.push('empty')
-}
 
+
+const winNumber = 10;
 
 
 class Player {
@@ -23,17 +19,20 @@ class Player {
     }
     addMushroom (){
         this.mushrooms.push('mush')
-        alert('Yay! You got a mushroom!') //placeholder
+        
+        // alert('Yay! You got a mushroom!') //placeholder
     }
     poisoned () {
         alert('Oh no! You found the poisonous mushroom! All of your mushrooms are gone')
         this.mushrooms = []
     }
     win () {
-        alert(`Hooray! ${this.name} found 30 mushrooms! \n You win!`) //placeholder
+        $('.win-notice').show(100)
+        $('.win-text').text(`Hooray! ${this.name} found ${winNumber} mushrooms! \n You win!`)
         newGame()
     }
 }
+
 const player1 = new Player('Player 1', 'player1');
     // $nameInput = null;
 const player2 = new Player('Player 2', 'player2');
@@ -42,10 +41,25 @@ const player2 = new Player('Player 2', 'player2');
 //Functions
 ////////////////////////
 
+const createGameBoard = () => {
+    gameBoardValues = ['poison'];
+    for (x = 0; x < 13; x++){
+        gameBoardValues.push('mushroom')
+    }
+    for (x = 0; x < 21; x++){
+        gameBoardValues.push('empty')
+    }
+}
+
 //start game
 const newGame = () => {
-    player1.mushrooms = []
-    player2.mushrooms = []
+    $('.notices').text(`Player 1's turn`),
+    $('.win-notice').hide();
+    player1.mushrooms.length = 0;
+    player2.mushrooms.length = 0;
+    // console.log(player2, player1)
+    $('.player2').text(`No mushrooms yet`);
+    $('.player1').text(`No mushrooms yet`);
     newRound()
 }
 
@@ -61,6 +75,9 @@ const shuffle = (array) => {
 
 //start new round
 const newRound = () => {
+    $('.container-grid').empty()
+    gameBoardValues = []
+    createGameBoard()
     shuffle(gameBoardValues)
     console.log(gameBoardValues)
     for (value of gameBoardValues) {
@@ -91,23 +108,18 @@ const playRound = () => {
     }
 
     const checkWin = (currentPlayer) => {
-        if (currentPlayer.mushrooms.length >= 15) {
+        if (currentPlayer.mushrooms.length >= winNumber) {
             currentPlayer.win()
-        } 
+
+        }
     }
 
-    const highlightCurrentTurn = (player) => {
-        // console.log()
-        $('#'+player.id+'-stats').css('color', 'red')
-    
-        // .css('box-shadow', '0 0.5 1rem rgba(0,10,0,0.2)')
+    const checkUnclickedMushrooms = () => {
+        // console.log($('#mushroom.unclicked'))
+        if ($('#mushroom.unclicked').length === 0){
+            newRound()
+        }
     }
-
-    const turnOffHighlight = (player) => {
-        $('#'+player.id+'-stats').removeAttr('style').css('color', 'red')
-    }
-
-    highlightCurrentTurn(currentPlayer)
 
     //player one clicks a square
     const playTurn = $('.square').one('click', (event) => {
@@ -127,35 +139,26 @@ const playRound = () => {
             
             checkWin(currentPlayer)
             console.log($('#mushroom'))
-            turnOffHighlight(currentPlayer)
+            checkUnclickedMushrooms()
             togglePlayer()
-            highlightCurrentTurn(currentPlayer)
+            $('.notices').text(`${currentPlayer.name}'s turn`)
         })
-
-
-
-
-
-    //which calls a function that: 
-    //square reveals picture that depends on class? or 
-
-    //if that square contains a mushroom, add the mushroom to player 1's array
-
-    //or, if it contains a poisonous mushroom, empty their array
-
-    //check if player 1 has 30 mushrooms
-
-    //if yes, they win game.
-
-    //if no, switch player to player 2
-
-    //restart this whole process again, until all the mushrooms on the board are gone
-
-    //this will maybe need an array of the grid classes
-
-
-
 }
 
+
+///////////////////////
+//Event Handlers
+///////////////////////
+
+const showInstructions = {
+    click: () => $('.instruction-box').show(300)
+}
+const hideInstructions = {
+    click: () => $('.instruction-box').hide(300)
+}
+
+const restartGame = {
+    click: () => newGame()
+}
 
 newGame()

@@ -87,3 +87,35 @@
 const handler = {
     click: () => console.log('hello')
 }
+
+
+    //which calls a function that: 
+    //square reveals picture that depends on class? or 
+
+    //if that square contains a mushroom, add the mushroom to player 1's array
+
+    //or, if it contains a poisonous mushroom, empty their array
+
+    //check if player 1 has 30 mushrooms
+
+    //if yes, they win game.
+
+    //if no, switch player to player 2
+
+    //restart this whole process again, until all the mushrooms on the board are gone
+
+    //this will maybe need an array of the grid classes
+
+
+    const highlightCurrentTurn = (player) => {
+        // console.log()
+        $('#'+player.id+'-stats').css('color', 'red')
+    
+        // .css('box-shadow', '0 0.5 1rem rgba(0,10,0,0.2)')
+    }
+
+    const turnOffHighlight = (player) => {
+        $('#'+player.id+'-stats').removeAttr('style').css('color', 'red')
+    }
+
+    highlightCurrentTurn(currentPlayer)
