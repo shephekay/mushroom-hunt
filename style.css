@@ -38,6 +38,7 @@ button {
     background-color: rgb(193, 235, 193);
     margin: 30px;
     cursor: pointer;
+    font-size: medium;
 }
 aside {
     margin: 30px;

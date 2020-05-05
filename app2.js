@@ -31,6 +31,7 @@ class Player {
     }
     win () {
         alert(`Hooray! ${this.name} found 30 mushrooms! \n You win!`) //placeholder
+        newGame()
     }
 }
 const player1 = new Player('Player 1', 'player1');
@@ -68,6 +69,7 @@ const newRound = () => {
         $square.addClass('unclicked')
         $square.appendTo($('.container-grid'))
     }
+    playRound()
 }
 
 
@@ -94,9 +96,22 @@ const playRound = () => {
         } 
     }
 
+    const highlightCurrentTurn = (player) => {
+        // console.log()
+        $('#'+player.id+'-stats').css('color', 'red')
+    
+        // .css('box-shadow', '0 0.5 1rem rgba(0,10,0,0.2)')
+    }
+
+    const turnOffHighlight = (player) => {
+        $('#'+player.id+'-stats').removeAttr('style').css('color', 'red')
+    }
+
+    highlightCurrentTurn(currentPlayer)
+
     //player one clicks a square
     const playTurn = $('.square').one('click', (event) => {
-
+            
 
             console.log(event.currentTarget);
             const $element = $(event.currentTarget);
@@ -111,8 +126,10 @@ const playRound = () => {
             $('.'+currentPlayer.id).text(`Mushrooms: ${currentPlayer.mushrooms.length}`)
             
             checkWin(currentPlayer)
+            console.log($('#mushroom'))
+            turnOffHighlight(currentPlayer)
             togglePlayer()
-            
+            highlightCurrentTurn(currentPlayer)
         })
 
 
@@ -142,4 +159,3 @@ const playRound = () => {
 
 
 newGame()
-playRound()
