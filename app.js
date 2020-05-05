@@ -1,4 +1,4 @@
-console.log('js file connected')
+// console.log('js file connected')
 ///////////////////////
 //Global Objects
 //////////////////////
@@ -13,7 +13,6 @@ for (x = 0; x < 11; x++){
 for (x = 0; x < 23; x++){
     gameBoardValues.push('empty')
 }
-// console.log(gameBoardValues)
 
 
 
@@ -22,80 +21,59 @@ class Player {
         this.name = name
         this.mushrooms = []
     }
-    playTurn(){
-        $('.square').on('click', (event) => {
-            console.log(event.currentTarget);
-            const $element = $(event.currentTarget);
-            console.log($element);
-            $element.toggleClass('unclicked');
-            // return $element
-            if ($element.is('#mushroom')) {
-                this.addMushroom()
-            } else if ($element.is('#poison')) {
-                this.poisoned()
-            } console.log(this, this.mushrooms)
-            console.log(player2)
-            // $element.unbind('click')
-            // $element.removeAttr('id')
-            
-        })}
     addMushroom (){
         this.mushrooms.push('mush')
+        alert('Yay! You got a mushroom!') //placeholder
     }
     poisoned () {
         this.mushrooms = []
     }
     win () {
+        alert(`Hooray! ${this.name} found 30 mushrooms! \n You win!`) //placeholder
     }
 }
 const player1 = new Player('Player 1');
     // $nameInput = null;
 const player2 = new Player('Player 2');
 
-//not sure about this yet. maybe have an array instead
-// class gameBoard {
-//     constructor (){
-//         this.mushrooms = 10
-//         this.deathCaps = 1
-//         this.empty = 19
-//     }
-//     generateBoard
-// }
+let currentPlayer = player1;
+
+
+
+
+
+
 
 //////////////////////////
 //Functions
 ////////////////////////
 
-//shuffle array- fisher-yates algorithm?
-
 const shuffle = (array) => {
     for (let i = array.length -1; i > 0; i--) {
-        let x = Math.floor(Math.random()*(i +1));
+        let x = Math.floor(Math.random()*(i + 1));
         let tempIndex = array[i];
         array[i] = array[x];
         array[x] = tempIndex;
     }
 }
 
-//start game
-const newGame = () => {
-    ///create 2 Players
-    // const player1 = new Player('Player 1');
-    // // $nameInput = null;
-    // const player2 = new Player('Player 2');
-    //append their names
 
-    //trigger createRound
-    return player1, player2,
-    createRound()
+
+//////////function check turn/alternate
+const togglePlayer = () => {
+    if (currentPlayer === player1) {
+        currentPlayer = player2
+    } else {
+        currentPlayer = player1
+    }
+    return currentPlayer
 }
 
 
 
+
 //start new round
-const createRound = () => {
-    //generate a new grid with 10 mushrooms, 1 poisonous one, 19 empty squares. 
-    
+const newRound = () => {
     shuffle(gameBoardValues)
     console.log(gameBoardValues)
     for (value of gameBoardValues) {
@@ -103,48 +81,55 @@ const createRound = () => {
         $square.addClass('square')
         $square.addClass('unclicked')
         $square.appendTo($('.container-grid'))
+        // //event handler
+        // $square.one('click', (event) => {
+        //     $element = $(event.currentTarget);
+        //     // console.log($element);
+        //     $element.toggleClass('unclicked')
+        //     console.log($element) //works, element becomes unclicked
+        //     //playturn
+        //     return $element
+        // }
+        
+        // )
     }
-
+    // } return $element
 }
 
 
 
-// const $playTurn = $('.square').on('click', (event, currentPlayer) => {
-//     console.log(event.currentTarget);
-//     const $element = $(event.currentTarget);
-//     console.log($element)
-//     $element.toggleClass('unclicked');
-//     if ($element.attr('id', 'mushroom')) {
-//         currentPlayer.addMushroom()
-//     } else if ($element.attr('id', 'poison')) {
-//         currentPlayer.poisoned()
-//     }
-//     return $element
+const playRound = () => {
 
-//     // $element.removeAttr('id')
-// })
+    const clickSquare = (event, player) => {
+    $element = $(event.currentTarget);
+    console.log($element);
+    $element.toggleClass('unclicked')
+    console.log($element) //works, element becomes unclicked
+    //playturn
+    // return $element
+    if ($element.is('#mushroom')) {
+        currentPlayer.addMushroom()
+    } else if ($element.is('#poison')) {
+        currentPlayer.poisoned()
+    } console.log(currentPlayer)
+    }
 
-//play round. should be loop?
-// const $playTurn = (currentPlayer) => {
-//     $('.square').on('click', (event) => {
-//         console.log(event.currentTarget);
-//         const $element = $(event.currentTarget);
-//         console.log($element);
-//         $element.toggleClass('unclicked');
-//         // return $element
-//         if ($element.is('#mushroom')) {
-//             currentPlayer.addMushroom()
-//         } else if ($element.is('#poison')) {
-//             currentPlayer.poisoned()
-//         } console.log(currentPlayer, currentPlayer.mushrooms)
-//         // $element.removeAttr('id')
-//     })
+    // player1.playTurn($element)
 
-//     // when player clicks on square, reveal whether currentTarget has class of mushroom. 
+    //ughhhhhhhh
+    let $square = $('.square')
+    //event handler
+    $square.one('click', clickSquare(event, currentPlayer))
+    
+}
 
-//     // if it does
+// turn(player1, $element)
+// playRound()
 
-// }
+
+
+
+
 
 //check win. if either player has 30 mushrooms, they win. check after each play.
 const checkWin = (currentPlayer) => {
@@ -158,31 +143,30 @@ const checkWin = (currentPlayer) => {
 //check for poisonous mushroom. check after each play.
 const checkPoisoned = (currentPlayer) => {
     //if the player has a poisonous mushroom, trigger their poisoned method
+    currentPlayer.poisoned()
 }
 
+
+
+
+//start game
+const newGame = () => {
+    player1.mushrooms = []
+    player2.mushrooms = []
+    newRound()
+}
 /////////////////////
 //Event Handlers
 ////////////////////
 
-//for example:
-const handler = {
-    click: () => console.log('hello')
-}
 
 /////////////////////////
 //App Logic
 //////////////////////////
 
-///is this where all the jquery stuff goes? i think so.
-
 newGame()
-// console.log(player1, player2)
-player1.playTurn()
-// player2.playTurn()
-// $playTurn()
-// console.log(player1,player2)
 
-player2.playTurn()
+
 
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
