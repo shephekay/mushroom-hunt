@@ -75,16 +75,17 @@ const shuffle = (array) => {
 
 //start new round
 const newRound = () => {
+    $('.alerts').text(`New round!`).slideDown('fast').delay(2000).slideUp('slow')
     $('.container-grid').empty()
-    $('.alerts').text(``)
+    // $('.alerts').text(``)
     gameBoardValues = []
     createGameBoard()
     shuffle(gameBoardValues)
     console.log(gameBoardValues)
     for (value of gameBoardValues) {
-        const $square = $('<div>').attr('id', value)
+        const $square = $('<div>').addClass(value)
         $square.addClass('square')
-        $square.addClass('unclicked')
+        $square.attr('id', 'unclicked')
         $square.appendTo($('.container-grid'))
     }
     playRound()
@@ -117,7 +118,7 @@ const playRound = () => {
 
     const checkUnclickedMushrooms = () => {
         // console.log($('#mushroom.unclicked'))
-        if ($('#mushroom.unclicked').length === 0){
+        if ($('.mushroom#unclicked').length === 0){
             newRound()
         }
     }
@@ -130,11 +131,11 @@ const playRound = () => {
             console.log(event.currentTarget);
             const $element = $(event.currentTarget);
             console.log($element)
-            $element.toggleClass('unclicked');
-            if ($element.is('#mushroom')) {
+            $element.removeAttr('id');
+            if ($element.is('.mushroom')) {
                 currentPlayer.addMushroom();
                 $('.alerts').text(`${currentPlayer.name} found a mushroom!`).slideDown('fast').delay(2000).slideUp('slow');
-            } else if ($element.is('#poison')) {
+            } else if ($element.is('.poison')) {
                 currentPlayer.poisoned()
                 $('.alerts').text(`Oh no! ${currentPlayer.name} found the death cap.`).slideDown('fast').delay(2000).slideUp('slow')
             }
@@ -142,10 +143,10 @@ const playRound = () => {
             $('.'+currentPlayer.id).text(`Mushrooms: ${currentPlayer.mushrooms.length}`)
             
             checkWin(currentPlayer)
-            console.log($('#mushroom'))
+            // console.log($('.mushroom'))
             checkUnclickedMushrooms()
             togglePlayer()
-            $('.notices').text(`${currentPlayer.name}'s turn`).delay(1000)
+            $('.notices').text(`${currentPlayer.name}'s turn`).delay(2000)
         })
 }
 
