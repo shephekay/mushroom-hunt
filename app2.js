@@ -145,7 +145,7 @@ const playRound = () => {
             console.log($('#mushroom'))
             checkUnclickedMushrooms()
             togglePlayer()
-            $('.notices').text(`${currentPlayer.name}'s turn`)
+            $('.notices').text(`${currentPlayer.name}'s turn`).delay(1000)
         })
 }
 
