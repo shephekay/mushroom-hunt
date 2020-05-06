@@ -174,3 +174,5 @@ newGame()
 // https://api.jquery.com/removeAttr/
 
 // https://stackoverflow.com/questions/17277821/jquery-if-element-has-an-id/17277848
+
+//https://stackoverflow.com/questions/7604880/how-to-hide-a-text-after-5-sec-using-jquery

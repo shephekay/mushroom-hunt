@@ -19,11 +19,11 @@ class Player {
     }
     addMushroom (){
         this.mushrooms.push('mush')
-        
+        // $('.notices').text(`Yay! ${this.name} found a mushroom!`)
+        // setTimeout($('.notices').text(''), 3000)
         // alert('Yay! You got a mushroom!') //placeholder
     }
     poisoned () {
-        alert('Oh no! You found the poisonous mushroom! All of your mushrooms are gone')
         this.mushrooms = []
     }
     win () {
@@ -54,7 +54,7 @@ const createGameBoard = () => {
 //start game
 const newGame = () => {
     $('.notices').text(`Player 1's turn`),
-    $('.win-notice').hide();
+    // $('.win-notice').hide();
     player1.mushrooms.length = 0;
     player2.mushrooms.length = 0;
     // console.log(player2, player1)
@@ -76,6 +76,7 @@ const shuffle = (array) => {
 //start new round
 const newRound = () => {
     $('.container-grid').empty()
+    $('.alerts').text(``)
     gameBoardValues = []
     createGameBoard()
     shuffle(gameBoardValues)
@@ -124,15 +125,18 @@ const playRound = () => {
     //player one clicks a square
     const playTurn = $('.square').one('click', (event) => {
             
+            $('.alerts').hide()
 
             console.log(event.currentTarget);
             const $element = $(event.currentTarget);
             console.log($element)
             $element.toggleClass('unclicked');
             if ($element.is('#mushroom')) {
-                currentPlayer.addMushroom()
+                currentPlayer.addMushroom();
+                $('.alerts').text(`${currentPlayer.name} found a mushroom!`).slideDown('fast').delay(2000).slideUp('slow');
             } else if ($element.is('#poison')) {
                 currentPlayer.poisoned()
+                $('.alerts').text(`Oh no! ${currentPlayer.name} found the death cap.`).slideDown('fast').delay(2000).slideUp('slow')
             }
             console.log(currentPlayer, player2)
             $('.'+currentPlayer.id).text(`Mushrooms: ${currentPlayer.mushrooms.length}`)
@@ -157,8 +161,12 @@ const hideInstructions = {
     click: () => $('.instruction-box').hide(300)
 }
 
-const restartGame = {
+const restart = {
     click: () => newGame()
+}
+const restartGame = {
+    click: () => newGame(),
+    click: () => $('.win-notice').hide()
 }
 
 newGame()
