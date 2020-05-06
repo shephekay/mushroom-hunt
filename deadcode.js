@@ -1,3 +1,19 @@
+/*
+Some source code:
+
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+
+// https://api.jquery.com/removeAttr/
+
+// https://stackoverflow.com/questions/17277821/jquery-if-element-has-an-id/17277848
+
+//https://stackoverflow.com/questions/7604880/how-to-hide-a-text-after-5-sec-using-jquery
+
+
+
+
+
+
 // console.log('js file connected')
 
 
@@ -128,9 +144,6 @@ const playRound = () => {
 // turn(player1, $element)
 // playRound()
 
-
-
-/*
 
 
 //check win. if either player has 30 mushrooms, they win. check after each play.
