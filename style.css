@@ -16,7 +16,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* outline: 3px solid gold; */
     font-family: 'IM Fell Great Primer', serif;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -25,7 +24,6 @@ h1, h2, h3, h4, h5, h6 {
 body {
     background-image: url('conifer-dawn-daylight-evergreen-167698.jpg');
     background-position: center;
-    /* background-size: cover; */
 }
 h1 {
     font-family: 'dumbledor_1_3dregular';
@@ -34,7 +32,6 @@ h1 {
     margin-top: 5rem;
     text-shadow: 0px 2px 5px black;
     color: var(--mainColor);
-    /* -webkit-text-stroke: 1px whitesmoke; */
 }
 .wrapper {
     display: flex;
@@ -49,7 +46,6 @@ h1 {
     justify-content: center;
 }
 button {
-    /* height: 2rem; */
     width: fit-content;
     padding: 10px;
     border-radius: 15px;
@@ -67,9 +63,6 @@ button:active, button:focus{
     outline: none;
     transform: translateY(.1rem);
 }
-/* button::after{
-    transform: translateY(-.1rem);
-} */
 aside {
     margin: 10px;
     text-align: center;
@@ -77,9 +70,7 @@ aside {
     padding: 1rem;
     border-radius: 20px;
     font-size: large;
-    /* border: 4px solid black */
     box-shadow: 0 .3rem 1rem rgba(0,0,0,0.3)
-
 }
 .game-square {
     height: 70vh;
@@ -97,11 +88,7 @@ aside {
     padding: 10px 15px;
     border-radius: 15px;
     color: var(--mainColor);
-    /* border: 2px solid var(--mainColor); */
-    /* text-shadow: 1px 1px 1px whitesmoke; */
-    /* text-shadow: 0px 0px 15px black; */
     box-shadow: 0 0.5 1rem rgba(0,0,0,0.2);
-    
 }
 .alerts {
     margin-top: 10px;
@@ -112,14 +99,12 @@ aside {
     color: white;
     font-size: xx-large;
     text-shadow: 0px 2px 5px black;
-    
 }
 .container-grid {
     display: flex;
     flex-wrap: wrap;
     width: 525px;
     position: absolute;
-    /* top: 40%; */
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -45%);
@@ -130,7 +115,6 @@ aside {
     box-shadow: 0 .3rem 1rem rgba(0,0,0,0.6);
 }
 .square {
-    cursor: pointer;
     height: 70px;
     width: 70px;
     border: solid 3px green;
@@ -146,12 +130,13 @@ aside {
 }
 #unclicked {
     background-image: url('grass.jpg'); 
+    cursor: pointer;
+    background-position: center;
 }
 .mushroom {
     background-image: url('icons8-amanita-48.png');
     background-position: center;
     background-repeat: no-repeat;
-    /* z-index:; */
 }
 .poison {
     background-image: url('icons8-poison-50.png');
@@ -171,8 +156,6 @@ aside {
     transform: translate(-50%, -50%);
     background-color: var(--secondaryColor);
     display: none;
-    /* box-shadow:  1rem 2rem 4rem 2rem green inset; */
-    /* box-shadow: inset 0px 0px 8px 0px green; */
     border-radius: 50px;
     border: 10px solid navy;
 }
@@ -184,7 +167,6 @@ aside {
     line-height: 0.5rem;
     background-color: whitesmoke;
     box-shadow: 0 .3rem 1rem rgba(0,0,0,0.3);
-    /* border: 2px solid navy; */
 }
 .exit:hover {
     box-shadow: 0 .5rem .5rem rgba(0,0,0,0.3);
@@ -195,7 +177,6 @@ aside {
 }
 .restart{
     position: fixed;
-    /* margin: 0 auto; */
     left: 40%;
     bottom: 30%;
     padding: 3%;

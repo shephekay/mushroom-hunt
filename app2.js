@@ -6,10 +6,7 @@ let $nameInput = $('input').val()
  
 let gameBoardValues = []
 
-
-
 const winNumber = 10;
-
 
 class Player {
     constructor(name, id){
@@ -19,9 +16,6 @@ class Player {
     }
     addMushroom (){
         this.mushrooms.push('mush')
-        // $('.notices').text(`Yay! ${this.name} found a mushroom!`)
-        // setTimeout($('.notices').text(''), 3000)
-        // alert('Yay! You got a mushroom!') //placeholder
     }
     poisoned () {
         this.mushrooms = []
@@ -34,7 +28,7 @@ class Player {
 }
 
 const player1 = new Player('Player 1', 'player1');
-    // $nameInput = null;
+    
 const player2 = new Player('Player 2', 'player2');
 
 //////////////////////////
@@ -54,10 +48,8 @@ const createGameBoard = () => {
 //start game
 const newGame = () => {
     $('.notices').text(`Player 1's turn`),
-    // $('.win-notice').hide();
     player1.mushrooms.length = 0;
     player2.mushrooms.length = 0;
-    // console.log(player2, player1)
     $('.player2').text(`No mushrooms yet`);
     $('.player1').text(`No mushrooms yet`);
     newRound()
@@ -77,11 +69,9 @@ const shuffle = (array) => {
 const newRound = () => {
     $('.alerts').text(`New round!`).slideDown('fast').delay(2000).slideUp('slow')
     $('.container-grid').empty()
-    // $('.alerts').text(``)
     gameBoardValues = []
     createGameBoard()
     shuffle(gameBoardValues)
-    console.log(gameBoardValues)
     for (value of gameBoardValues) {
         const $square = $('<div>').addClass(value)
         $square.addClass('square')
@@ -98,7 +88,6 @@ const playRound = () => {
     let currentPlayer = player1
     //array of current pieces
     let $currentSquares = $('.square')
-    // console.log($currentSquares)
 
     const togglePlayer = () => {
         if (currentPlayer === player1) {
@@ -117,7 +106,6 @@ const playRound = () => {
     }
 
     const checkUnclickedMushrooms = () => {
-        // console.log($('#mushroom.unclicked'))
         if ($('.mushroom#unclicked').length === 0){
             newRound()
         }
@@ -127,10 +115,8 @@ const playRound = () => {
     const playTurn = $('.square').one('click', (event) => {
             
             $('.alerts').hide()
-
-            console.log(event.currentTarget);
+            
             const $element = $(event.currentTarget);
-            console.log($element)
             $element.removeAttr('id');
             if ($element.is('.mushroom')) {
                 currentPlayer.addMushroom();
@@ -139,11 +125,9 @@ const playRound = () => {
                 currentPlayer.poisoned()
                 $('.alerts').text(`Oh no! ${currentPlayer.name} found the death cap.`).slideDown('fast').delay(2000).slideUp('slow')
             }
-            console.log(currentPlayer, player2)
             $('.'+currentPlayer.id).text(`Mushrooms: ${currentPlayer.mushrooms.length}`)
             
             checkWin(currentPlayer)
-            // console.log($('.mushroom'))
             checkUnclickedMushrooms()
             togglePlayer()
             $('.notices').text(`${currentPlayer.name}'s turn`).delay(2000)
