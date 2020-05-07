@@ -3,7 +3,7 @@ A mushroom-hunting browser game :mushroom:
 
 A simple two-player game where users click on squares to find hidden mushrooms. Rounds end when all the mushrooms have been found. Beware the poisonous death cap!
 
-Rules and explanation: 2 players take turns clicking squares on a grid, trying to find mushrooms. If you happen to click the square where the poisonous death cap is located, you lose all your mushrooms, as you must empty your basket of all possible contamination. The first player to find ten mushrooms wins. A new round starts when all the mushrooms on the current grid have been found. 
+Rules and explanation: 2 players take turns clicking squares on a grid, trying to find mushrooms which are randomized in the grid each round. If you happen to click the square where the poisonous death cap is located, you lose all your mushrooms, as you must empty your basket of all possible contamination. The first player to find ten mushrooms wins. A new round starts when all the mushrooms on the current grid have been found. 
 
 Technologies used: HTML, CSS, Javascript, and jQuery.
 
